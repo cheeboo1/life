@@ -1,0 +1,28 @@
+from datetime import datetime, timedelta
+
+def calculate_days_off(year):
+    start_date = datetime(year, 1, 1)
+    end_date = datetime(year, 12, 31)
+    current_date = start_date
+    work_days = 3
+    days_off = 4
+    days_off_list = []
+
+    while current_date <= end_date:
+        for _ in range(work_days):
+            if current_date > end_date:
+                break
+            current_date += timedelta(days=1)
+        
+        for _ in range(days_off):
+            if current_date > end_date:
+                break
+            days_off_list.append(current_date)
+            current_date += timedelta(days=1)
+    
+    return days_off_list
+
+year = 2024
+days_off = calculate_days_off(year)
+for day in days_off:
+    print(day.strftime("%Y-%m-%d"))
